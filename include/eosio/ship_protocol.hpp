@@ -453,8 +453,6 @@ namespace eosio { namespace ship_protocol {
 
    EOSIO_REFLECT(account_metadata_v0, name, privileged, last_code_update, code)
 
-   using account_metadata = std::variant<account_metadata_v0>;
-
    struct account_metadata_v1 {
       eosio::name            name             = {};
       uint64_t               recv_sequence    = {};
@@ -462,6 +460,8 @@ namespace eosio { namespace ship_protocol {
    };
 
    EOSIO_REFLECT(account_metadata_v1, name, recv_sequence, auth_sequence)
+
+   using account_metadata = std::variant<account_metadata_v0, account_metadata_v1>;
 
    struct code_v0 {
       uint8_t             vm_type    = {};
